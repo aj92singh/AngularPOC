@@ -39,9 +39,16 @@ this.Fromvalue=data;
   else this.Tovalue=data;
 }
 convertCurrency(){
+  if(this.Fromvalue=="Select From" || this.Tovalue=="Select To"){
+    this.convertedValue=0;
+    alert("Select proper values for conversion");
+  }
+  else{
   this.convert=this._sharedService.convertCurrency(this.Fromvalue,this.Tovalue).then(data=>{
     this.displayResult(data)
+
   })
+}
 }
 displayResult(data){
 this.convertedValue=data;
