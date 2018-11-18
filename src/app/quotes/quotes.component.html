@@ -1,0 +1,33 @@
+<div [ngBusy]="[busy]"></div>
+
+
+
+<form class="col-sm-12" style="padding-top:4px; width: 25%;">
+
+    <div class="form-group dropdown"> Category
+        <button id="CreateNewOrderbutton" class="btn button-primary dropdown-toggle" style="margin:0;border:3px;height:36px;" data-toggle="dropdown">
+           {{catvalue}}  <span class="caret" style="float:right;margin:8px 0 0 13px"></span>
+        </button>
+
+        <ul #selectBoxOptions class="dropdown-menu" role="menu" style="height:auto;max-height:350px;overflow-x:hidden;">
+            <li *ngFor="let category of categories">
+                <a href="javascript:void(0)" (click)="setCategory(category)" title="{{category}}">{{category}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label for="NoQuotes">Number of Quotes:</label>
+        <input type="number" name ="NoQuotes" [(ngModel)]="numberofQuotes" class="form-control" id="NoQuotes">
+    </div>
+    
+
+    <button type="submit" class="btn btn-default" (click)="getQuotes()" >Submit</button>
+</form>
+
+<div *ngIf="quotes && quotes.length>0">
+<div class="container-fluid bg-2 text-center col-sm-4" *ngFor="let quote of quotes" style="float:left"> 
+    <h3 class="margin" style="text-align: justify;">{{quote.quote}}</h3>
+    <h4 style="float:right">-{{quote.author}}</h4>
+  </div>
+</div>

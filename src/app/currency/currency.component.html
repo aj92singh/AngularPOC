@@ -1,0 +1,36 @@
+<div [ngBusy]="[busy,convert]"></div>
+
+
+<form class="col-sm-12" style="padding-top:4px; width: 25%;">
+
+    <div class="form-group dropdown" *ngIf="Currencies && Currencies.length>0"> <span style="padding-right:15px"> From</span>
+        <button id="CreateNewOrderbutton" class="btn button-primary dropdown-toggle" style="margin:0;border:3px;height:36px;" data-toggle="dropdown">
+           {{Fromvalue}}  <span class="caret" style="float:right;margin:8px 0 0 13px"></span>
+        </button>
+
+        <ul #selectBoxOptions class="dropdown-menu" role="menu" style="height:auto;max-height:350px;overflow-x:hidden;">
+            <li *ngFor="let currency of Currencies">
+                <a href="javascript:void(0)" (click)="setCurrency(currency,true)" title="currency">{{currency}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group dropdown" *ngIf="Currencies && Currencies.length>0"> <span style="padding-right:30px">To</span>
+        <button id="CreateNewOrderbutton" class="btn button-primary dropdown-toggle" style="margin:0;border:3px;height:36px;" data-toggle="dropdown">
+           {{Tovalue}}  <span class="caret" style="float:right;margin:8px 0 0 13px"></span>
+        </button>
+
+        <ul #selectBoxOptions class="dropdown-menu" role="menu" style="height:auto;max-height:350px;overflow-x:hidden;">
+            <li *ngFor="let currency of Currencies">
+                <a href="javascript:void(0)" (click)="setCurrency(currency,false)" title="{{currency}}">{{currency}}</a>
+            </li>
+        </ul>
+    </div>
+    
+
+    <button type="submit" class="btn btn-default" (click)="convertCurrency()" >Convert</button>
+</form>
+<div class="container-fluid bg-2 text-center col-sm-4" *ngIf="convertedValue>0">
+    
+    <h2 class="margin" style="text-align: justify;">Converstion rate from {{Fromvalue}} to {{Tovalue}} is <em style="color:red">{{convertedValue}}</em></h2>
+   
+  </div>
